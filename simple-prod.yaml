@@ -1,0 +1,17 @@
+# setup an elasticsearch with `make es`
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: simple-prod
+spec:
+  collector:
+    autoscale: true
+    minReplicas: 1
+    maxReplicas: 10
+  strategy: production
+  storage:
+    type: elasticsearch
+    options:
+      es:
+        # Note: This assumes elasticsearch is running in the "default" namespace.
+        server-urls: http://elasticsearch.default.svc:9200
