@@ -5,9 +5,11 @@ metadata:
   name: simple-prod
 spec:
   collector:
-    autoscale: true
-    minReplicas: 1
-    maxReplicas: 10
+    maxReplicas: 5
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
   strategy: production
   storage:
     type: elasticsearch
